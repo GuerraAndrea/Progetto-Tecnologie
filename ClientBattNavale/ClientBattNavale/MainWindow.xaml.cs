@@ -24,5 +24,16 @@ namespace ClientBattNavale
         {
             InitializeComponent();
         }
+
+        private void buttFine_Click(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText = "Sicuro di voler salvare le modifiche?";
+            string caption = "Word Processor";
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxResult result;
+
+            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+        }
     }
 }
