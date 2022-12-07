@@ -48,7 +48,7 @@ namespace ClientBattNavale
                     Attacco.Owner = this;
                     Attacco.Show();
 
-                    //Aggiungere chiusura finestra precedente
+                    //Aggiungere chiuura finestra precedente
                     //MainWindow vm = new MainWindow();
                     //vm.Close();
 
