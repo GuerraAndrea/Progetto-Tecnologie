@@ -23,6 +23,7 @@ namespace ClientBattNavale
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void buttFine_Click(object sender, RoutedEventArgs e)
@@ -46,6 +47,12 @@ namespace ClientBattNavale
                     var Attacco = new Attacco();
                     Attacco.Owner = this;
                     Attacco.Show();
+
+                    //Aggiungere chiusura finestra precedente
+                    //MainWindow vm = new MainWindow();
+                    //vm.Close();
+
+
 
                     break;
                 case MessageBoxResult.No:
