@@ -26,7 +26,14 @@ namespace ClientBattNavale
             
         }
 
-       
-        
+        private void btnPartita_Click(object sender, RoutedEventArgs e)
+        {
+          
+            var Tabella1 = new Tabella1();
+            Hide();
+            Tabella1.ShowDialog();
+
+            
+        }
     }
 }
