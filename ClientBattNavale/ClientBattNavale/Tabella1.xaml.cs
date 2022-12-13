@@ -41,13 +41,15 @@ namespace ClientBattNavale
                     break;
                 case MessageBoxResult.Yes:
                     // passaggio a finestra successiva
-                    var MainWindow = new MainWindow();
+                   
 
                     var Attacco = new Attacco();
                     //Attacco.Owner = this;
+                    
                     Attacco.Show();
+                    this.Close();
 
-                    MainWindow.Hide();
+                    
 
 
 

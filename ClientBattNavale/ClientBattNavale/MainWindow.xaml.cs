@@ -20,18 +20,46 @@ namespace ClientBattNavale
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        DatiCondivisi condi;
+        Client c;
+        public int valueImage { get; set; }
+        public Uri sourceOfTheImage { get; set; }
+        Random rand = new Random();
+        public MainWindow(DatiCondivisi condi,Client c)
         {
+            sourceOfTheImage = new Uri(".jpg", UriKind.Relative);
             InitializeComponent();
-            
+            valueImage = 1;
+            this.condi = condi;
+            this.c = c;
+        }
+        public void closing()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (txtNome.Text != "" && txtNome.Text != null)
+                {
+                    condi.Utente = txtNome.Text;
+                    condi.sourceOfTheImage = sourceOfTheImage;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
+                    condi.aCaso = false;
+                }
+            });
+
         }
 
         private void btnPartita_Click(object sender, RoutedEventArgs e)
         {
-          
-            var Tabella1 = new Tabella1();
-            Hide();
-            Tabella1.ShowDialog();
+            if (txtNome.Text == "" && txtNome.Text != null)
+            {
+                MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
+            }
+
+           
 
             
         }

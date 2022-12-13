@@ -16,6 +16,11 @@
         <TextBox x:Name="txtIp2" HorizontalAlignment="Left" Margin="249,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
         <TextBox x:Name="txtIp3" HorizontalAlignment="Left" Margin="328,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
         <TextBox x:Name="txtIp4" HorizontalAlignment="Left" Margin="407,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
+        <Image HorizontalAlignment="Left" Height="166" Margin="585,123,0,0" VerticalAlignment="Top" Width="157"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="723,308,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="610,308,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="54,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="54,266,0,0" VerticalAlignment="Top"/>
 
 
 
