@@ -6,57 +6,23 @@
         xmlns:local="clr-namespace:ClientBattNavale"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid RenderTransformOrigin="0.489,0.482">
-        <Button x:Name="butt1a" Content="" HorizontalAlignment="Left" Margin="305,154,0,0" VerticalAlignment="Top" Width="26" Height="24"/>
-        <Label Content="1" HorizontalAlignment="Left" Margin="307,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.543,-0.126" Height="32" Width="21"/>
-        <Label Content="A" HorizontalAlignment="Left" Margin="277,150,0,0" VerticalAlignment="Top" Height="32" Width="22"/>
-        <Label Content="Inserisci le tue navi cliccando i bottoni" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="butt2a" Content="" HorizontalAlignment="Left" Margin="338,154,0,0" VerticalAlignment="Top" Width="25" Height="24"/>
-        <Button x:Name="butt3a" Content="" HorizontalAlignment="Left" Margin="370,154,0,0" VerticalAlignment="Top" Width="25" Height="24"/>
-        <Button x:Name="butt6a" Content="" HorizontalAlignment="Left" Margin="465,154,0,0" VerticalAlignment="Top" Width="25" Height="24"/>
-        <Button x:Name="butt5a" Content="" HorizontalAlignment="Left" Margin="433,154,0,0" VerticalAlignment="Top" Width="25" Height="24"/>
-        <Button x:Name="butt4a" Content="" HorizontalAlignment="Left" Margin="401,154,0,0" VerticalAlignment="Top" Width="26" Height="24"/>
-        <Label Content="2" HorizontalAlignment="Left" Margin="338,121,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="3" HorizontalAlignment="Left" Margin="372,121,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="4" HorizontalAlignment="Left" Margin="404,121,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="5" HorizontalAlignment="Left" Margin="435,121,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="6" HorizontalAlignment="Left" Margin="467,121,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="B" HorizontalAlignment="Left" Margin="278,182,0,0" VerticalAlignment="Top" Height="33" Width="21"/>
-        <Label Content="C" HorizontalAlignment="Left" Margin="278,210,0,0" VerticalAlignment="Top" Height="32" Width="21"/>
-        <Button x:Name="butt1b" Content="" HorizontalAlignment="Left" Margin="305,185,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt2b" Content="" HorizontalAlignment="Left" Margin="338,185,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt3b" Content="" HorizontalAlignment="Left" Margin="370,185,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt4b" Content="" HorizontalAlignment="Left" Margin="401,185,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt5b" Content="" HorizontalAlignment="Left" Margin="433,185,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt6b" Content="" HorizontalAlignment="Left" Margin="465,185,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt1c" Content="" HorizontalAlignment="Left" Margin="305,217,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt2c" Content="" HorizontalAlignment="Left" Margin="338,217,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt3c" Content="" HorizontalAlignment="Left" Margin="370,217,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt4c" Content="" HorizontalAlignment="Left" Margin="401,217,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt5c" Content="" HorizontalAlignment="Left" Margin="433,217,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt6c" Content="" HorizontalAlignment="Left" Margin="465,217,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.453,2.768" Height="25"/>
-        <Label Content="D" HorizontalAlignment="Left" Margin="278,242,0,0" VerticalAlignment="Top" Height="33" Width="23"/>
-        <Button x:Name="butt1d" Content="" HorizontalAlignment="Left" Margin="305,246,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt2d" Content="" HorizontalAlignment="Left" Margin="338,246,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt3d" Content="" HorizontalAlignment="Left" Margin="370,246,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt4d" Content="" HorizontalAlignment="Left" Margin="401,246,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt5d" Content="" HorizontalAlignment="Left" Margin="433,246,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt6d" Content="" HorizontalAlignment="Left" Margin="465,246,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.453,2.768" Height="25"/>
-        <Label Content="E" HorizontalAlignment="Left" Margin="279,275,0,0" VerticalAlignment="Top" Height="32" Width="20"/>
-        <Label Content="F" HorizontalAlignment="Left" Margin="281,304,0,0" VerticalAlignment="Top" Height="32" Width="19"/>
-        <Button x:Name="butt1e" Content="" HorizontalAlignment="Left" Margin="305,277,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt2e" Content="" HorizontalAlignment="Left" Margin="338,277,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt3e" Content="" HorizontalAlignment="Left" Margin="370,277,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt4e" Content="" HorizontalAlignment="Left" Margin="401,277,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt5e" Content="" HorizontalAlignment="Left" Margin="433,277,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt6e" Content="" HorizontalAlignment="Left" Margin="465,277,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.453,2.768" Height="25"/>
-        <Button x:Name="butt1f" Content="" HorizontalAlignment="Left" Margin="305,307,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt2f" Content="" HorizontalAlignment="Left" Margin="338,307,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt3f" Content="" HorizontalAlignment="Left" Margin="370,307,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt4f" Content="" HorizontalAlignment="Left" Margin="401,307,0,0" VerticalAlignment="Top" Width="26" Height="25"/>
-        <Button x:Name="butt5f" Content="" HorizontalAlignment="Left" Margin="433,307,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-        <Button x:Name="butt6f" Content="" HorizontalAlignment="Left" Margin="465,307,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.453,2.768" Height="25"/>
-        <Label Content="Battaglia Navale" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Bahnschrift SemiBold"/>
-        <Button x:Name="buttFine" Content="Fine" HorizontalAlignment="Left" Margin="348,370,0,0" VerticalAlignment="Top" Height="40" Width="97" Click="buttFine_Click"/>
+    <Grid>
+        <Image Source="/mare.jpg" Stretch="UniformToFill"></Image>
+
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Margin="170,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" Height="58" FontSize="24"/>
+        <TextBox x:Name="txtIp1" HorizontalAlignment="Left" Margin="170,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
+        <Button x:Name="btnPartita" Content="CERCA PARTITA" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Height="55" Width="215" FontSize="24" Background="#FF3434F1" Foreground="White" Click="btnPartita_Click" />
+        <Label Content="BATTAGLIA NAVALE" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="460" Height="71" FontSize="48" HorizontalContentAlignment="Center" Background="#FF3434F1" FontWeight="Bold" Foreground="White"/>
+        <TextBox x:Name="txtIp2" HorizontalAlignment="Left" Margin="249,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
+        <TextBox x:Name="txtIp3" HorizontalAlignment="Left" Margin="328,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
+        <TextBox x:Name="txtIp4" HorizontalAlignment="Left" Margin="407,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="58" FontSize="24"/>
+        <Image HorizontalAlignment="Left" Height="166" Margin="585,123,0,0" VerticalAlignment="Top" Width="157"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="723,308,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="610,308,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="54,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="54,266,0,0" VerticalAlignment="Top"/>
+
+
+
     </Grid>
 </Window>

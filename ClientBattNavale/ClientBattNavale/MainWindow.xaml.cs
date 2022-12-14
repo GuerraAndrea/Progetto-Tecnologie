@@ -20,46 +20,48 @@ namespace ClientBattNavale
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        DatiCondivisi condi;
+        Client c;
+        public int valueImage { get; set; }
+        public Uri sourceOfTheImage { get; set; }
+        Random rand = new Random();
+        public MainWindow(DatiCondivisi condi,Client c)
         {
+            sourceOfTheImage = new Uri(".jpg", UriKind.Relative);
             InitializeComponent();
-            
+            valueImage = 1;
+            this.condi = condi;
+            this.c = c;
+        }
+        public void closing()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (txtNome.Text != "" && txtNome.Text != null)
+                {
+                    condi.Utente = txtNome.Text;
+                    condi.sourceOfTheImage = sourceOfTheImage;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
+                    condi.aCaso = false;
+                }
+            });
+
         }
 
-        private void buttFine_Click(object sender, RoutedEventArgs e)
+        private void btnPartita_Click(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = "Sicuro di voler salvare le modifiche?";
-            string caption = "Salvataggio Navi";
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;         //messaggio per salvataggio delle modifiche
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxResult result;
-
-            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-
-            switch (result)
+            if (txtNome.Text == "" && txtNome.Text != null)
             {
-                case MessageBoxResult.Cancel:
-                    // torno alla pagina corrente
-                    break;
-                case MessageBoxResult.Yes:
-                    // passaggio a finestra successiva
-                    var MainWindow = new MainWindow();
-
-                    var Attacco = new Attacco();
-                    //Attacco.Owner = this;
-                    Attacco.Show();
-
-                    MainWindow.Hide();
-
-
-
-
-
-                    break;
-                case MessageBoxResult.No:
-                    // torno alla pagina corrente
-                    break;
+                MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
             }
+
+           
+
+            
         }
     }
 }
