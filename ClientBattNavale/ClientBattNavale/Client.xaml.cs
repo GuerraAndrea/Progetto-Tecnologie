@@ -138,6 +138,26 @@ namespace ClientBattNavale
                             attacchi[i, j].Background = Brushes.Black;
             });
         }
+        public void MostraMappaGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                    {
+                        InitGrigliaNavi.Children.Remove(buttons[i, j]);
+                        MiaMappa.Children.Add(buttons[i, j]);
+                        Button b = new Button();
+                        b.Width = InitGrigliaNavi.Width / 10;
+                        b.Height = InitGrigliaNavi.Height / 10;
+                        b.Margin = new Thickness(j * InitGrigliaNavi.Width / 10, i * InitGrigliaNavi.Height / 10, (9 - j) * InitGrigliaNavi.Width / 10, (9 - i) * InitGrigliaNavi.Width / 10);
+                        b.Click += BAttacchi_Click;
+                        b.Name = "B" + (i + 1) + "_" + j;
+                        attacchi[i, j] = b;
+                        MappaAttacchi.Children.Add(b);
+                    }
+            });
+        }
 
     }
 }
