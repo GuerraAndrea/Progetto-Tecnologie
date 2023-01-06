@@ -114,6 +114,30 @@ namespace ClientBattNavale
                 MostraMappaGioco();
             });
         }
+        public void AggiornaMappa()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                        if (DatiCondivisi.Init().mappa.mappa[i, j] < 0)
+                            buttons[i, j].Background = Brushes.Red;
+                        else if (DatiCondivisi.Init().mappa.mappa[i, j] > 0)
+                            buttons[i, j].Background = Brushes.Black;
+            });
+        }
+        public void AggiornaAttacchi()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                        if (DatiCondivisi.Init().mappa.attacchi[i, j] < 0)
+                            attacchi[i, j].Background = Brushes.Red;
+                        else if (DatiCondivisi.Init().mappa.attacchi[i, j] > 0)
+                            attacchi[i, j].Background = Brushes.Black;
+            });
+        }
 
     }
 }
