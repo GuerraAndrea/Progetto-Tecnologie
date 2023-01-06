@@ -49,6 +49,41 @@ namespace ClientBattNavale
                 }
             }
         }
-       
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            string[] numero = ((Button)e.Source).Name.Substring(1).Split('_');
+            if (txtLettera.Text == "")
+            {
+                txtLettera.Text = (char)(int.Parse(numero[1]) + 'A') + "";
+                txtNumero.Text = int.Parse(numero[0]) + "";
+            }
+            else
+            {
+                txtLetteraTermine.Text = (char)(int.Parse(numero[1]) + 'A') + "";
+                txtNumeroTermine.Text = int.Parse(numero[0]) + "";
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtLettera.Text != "" && txtLetteraTermine.Text != "")
+            {
+                if (DatiCondivisi.Init().mappa.aggiungiNave(new Coordinate(txtLettera.Text[0], int.Parse(txtNumero.Text)), new Coordinate(txtLetteraTermine.Text[0], int.Parse(txtNumeroTermine.Text)), navi[naviInserite]))
+                {
+                    naviInserite++;
+                    if (naviInserite < navi.Length)
+                        TipoNave.Content = "Inserire una nave di " + navi[naviInserite] + " celle";
+                    else
+                        MostraGioco();
+                    txtLettera.Text = "";
+                    txtLetteraTermine.Text = "";
+                    txtNumero.Text = "";
+                    txtNumeroTermine.Text = "";
+                    AggiornaMappa();
+                }
+                else
+                    MessageBox.Show("Errore");
+            }
+        }
+
     }
 }
