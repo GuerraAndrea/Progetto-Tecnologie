@@ -82,6 +82,13 @@ namespace ClientBattNavale.Comunicazione
                     break;
             }
         }
+        public void Invia(Messaggio m)
+        {
+            lock (synInvia)
+            {
+                DaInviare.Enqueue(m);
+            }
+        }
 
 
     }
