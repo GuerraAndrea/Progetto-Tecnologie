@@ -84,6 +84,36 @@ namespace ClientBattNavale
                     MessageBox.Show("Errore");
             }
         }
+        public void MostraInitGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Visible;
+                GridGioco.Visibility = Visibility.Hidden;
+                GridConnessione.Visibility = Visibility.Hidden;
+                InitPosizioneNavi();
+            });
+        }
+        public void MostraConnessione()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Hidden;
+                GridGioco.Visibility = Visibility.Hidden;
+                GridConnessione.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void MostraGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Hidden;
+                GridGioco.Visibility = Visibility.Visible;
+                GridConnessione.Visibility = Visibility.Hidden;
+                MostraMappaGioco();
+            });
+        }
 
     }
 }
