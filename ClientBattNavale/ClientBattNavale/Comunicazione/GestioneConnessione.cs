@@ -39,8 +39,49 @@ namespace ClientBattNavale.Comunicazione
             Server.Start();
             Logica.Start();
         }
-       
-        
+
+        private void Elabora(Messaggio m)
+        {
+            string[] split;
+            switch (m.scelta)
+            {
+                case "c":
+                    DatiCondivisi.Init().main.MostraInitGioco();
+                    break;
+                case "A":
+                    split = m.dati.Split(';');
+                    DatiCondivisi.Init().mappa.SubisciAttaccoNave(new Coordinate(split[1][0], int.Parse(split[0])));
+                    DatiCondivisi.Init().main.AggiornaMappa();
+                    break;
+                case "RA":
+                    split = m.dati.Split(';');
+                    switch (split[0])
+                    {
+                        case "0":
+                            DatiCondivisi.Init().mappa.SubisciAttaccoNave(new Coordinate(split[1][0], int.Parse(split[0])));
+                            break;
+                        case "1":
+                            DatiCondivisi.Init().mappa.SubisciAttaccoNave(new Coordinate(split[1][0], int.Parse(split[0])));
+                            MessageBox.Show("Hai colpito una nave");
+                            break;
+                        case "2":
+                            DatiCondivisi.Init().mappa.NaveAbbattuta(new Coordinate(split[2][0], int.Parse(split[1])), new Coordinate(split[4][0], int.Parse(split[3])));
+                            MessageBox.Show("Hai abbattuto una nave");
+                            break;
+                        case "3":
+                            MessageBox.Show("Hai vinto!!");
+                            DatiCondivisi.Init().main.MostraConnessione();
+                            break;
+                    }
+                    DatiCondivisi.Init().main.AggiornaAttacchi();
+                    Coordinate c = new Coordinate(split[1][0], int.Parse(split[0]));
+                    DatiCondivisi.Init().mappa.SubisciAttaccoNave(c);
+                    break;
+                case "t":
+                    DatiCondivisi.Init().mappa.turno = !DatiCondivisi.Init().mappa.turno;
+                    break;
+            }
+        }
 
 
     }
