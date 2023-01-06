@@ -89,7 +89,76 @@ namespace ClientBattNavale.Comunicazione
                 DaInviare.Enqueue(m);
             }
         }
+        private void GLogica()
+        {
+            while (!Termina)
+            {
+                if (DaElaborare.Count > 0)
+                {
+                    Messaggio m;
+                    lock (synElabora)
+                    {
+                        m = DaElaborare.Dequeue();
+                    }
+                    if (m != null)
+                        Elabora(m);
+                }
+            }
+        }
 
+        private void GServer()
+        {
+            try
+            {
+                while (!Termina || DaInviare.Count != 0)
+                {
+                    if (DaInviare.Count > 0)
+                    {
+                        Messaggio m;
+                        lock (synInvia)
+                        {
+                            m = DaInviare.Dequeue();
+                        }
+                        if (m != null)
+                        {
+                            sw.WriteLine(m.toCsv());
+                            sw.Flush();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            { }
+            sw.Close();
+        }
 
+        private void GClient()
+        {
+            try
+            {
+                while (!Termina)
+                {
+                    string s = sr.ReadLine();
+                    if (s == null)
+                        Termina = true;
+                    else if (s != "")
+                    {
+                        Console.WriteLine(s);
+                        Messaggio m = new Messaggio(s);
+                        lock (synElabora)
+                        {
+                            DaElaborare.Enqueue(m);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            { }
+            sr.Close();
+        }
     }
 }
+
+
+    
+
