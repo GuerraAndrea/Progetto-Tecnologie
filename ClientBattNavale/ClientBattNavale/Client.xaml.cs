@@ -158,6 +158,19 @@ namespace ClientBattNavale
                     }
             });
         }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            txtLettera.Text = "";
+            txtNumero.Text = "";
+        }
+
+        private void BAttacchi_Click(object sender, RoutedEventArgs e)
+        {
+            string[] split = ((Button)e.Source).Name.Substring(1).Split('_');
+            DatiCondivisi.Init().mappa.AttaccaNave(new Coordinate((char)(int.Parse(split[1]) + 'A'), int.Parse(split[0])));
+            AggiornaMappa();
+            AggiornaAttacchi();
+        }
 
     }
 }
