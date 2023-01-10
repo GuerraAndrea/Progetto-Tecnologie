@@ -32,14 +32,29 @@ public class server{
 
             //controllo e sistemo le due tabelle con le barche
 
-  
 
 
-            Integer attacco1=0;
-            Integer attacco2=0;
 
+            //-------------------------------------------------------------//
+            //instauro la connessione e leggo i messaggi degli attacchi 
+            //while finchè non ha finito le barche
+            //attacco del giocatore 1 per primo
+            byte[] bufferGiocatore1attacco=new byte[1500];
+            DatagramPacket packetGiocatore1attacco=new DatagramPacket(bufferGiocatore1attacco,bufferGiocatore1attacco.length);
+            packetGiocatore1.setAddress(InetAddress.getByName(/*IP 1*/));
+            socketGiocatore1.receive(packetGiocatore1);
+            String messGiocatore1attacco=new String(packetGiocatore1.getData());
 
-            
+            //attacco del giocatore 2 per secondo
+            byte[] bufferGiocatore2attacco=new byte[1500];
+            DatagramPacket packetGiocatore2attacco=new DatagramPacket(bufferGiocatore2attacco,bufferGiocatore2attacco.length); 
+            packetGiocatore2.setAddress(InetAddress.getByName(/* IP 2*/));
+            socketGiocatore2.receive(packetGiocatore2);
+            String messGiocatore2attacco=new String(packetGiocatore2.getData());
+
+            //metto i messaggi in due variabili per il controllo
+            String[] attaccoG1 = messGiocatore1attacco.split(";");
+            String[] attaccoG2 = messGiocatore2attacco.split(";");
 
             
 
@@ -48,7 +63,7 @@ public class server{
 
             // ----------------------------------------------------------------------//
             
-                // Risposta
+                // Risposta finale
                 //indirizzi e porte giocatori
             InetAddress responseAddressGiocatore1=packetGiocatore1.getAddress(); //Giocatore 1
             int responsePortGiocatore1=packetGiocatore1.getPort(); //Giocatore 1
