@@ -45,7 +45,20 @@ public class server{
             socketGiocatore1.receive(packetGiocatore1);
             String messGiocatore1attacco=new String(packetGiocatore1.getData());
 
-            //attacco del giocatore 2 per secondo
+            String[] attaccoG1 = messGiocatore1attacco.split(";");
+            int rispostaattacco=0;  //0=acqua 1=colpito 2=affondato
+            for(Integer i=0; i<50; i++)
+            {
+                if(barcheGiocatore2[i] == attaccoG1[0])        
+                {
+                  rispostaattacco=1;
+                }
+                else{
+                   rispostaattacco=0;
+                }
+            }
+
+            //attacco del giocatore 2
             byte[] bufferGiocatore2attacco=new byte[1500];
             DatagramPacket packetGiocatore2attacco=new DatagramPacket(bufferGiocatore2attacco,bufferGiocatore2attacco.length); 
             packetGiocatore2.setAddress(InetAddress.getByName(/* IP 2*/));
@@ -53,8 +66,20 @@ public class server{
             String messGiocatore2attacco=new String(packetGiocatore2.getData());
 
             //metto i messaggi in due variabili per il controllo
-            String[] attaccoG1 = messGiocatore1attacco.split(";");
+            
             String[] attaccoG2 = messGiocatore2attacco.split(";");
+            
+
+            for(Integer i=0; i<50; i++)
+            {
+                if(barcheGiocatore1[i] == attaccoG2[0])        
+                {
+                  rispostaattacco=1;
+                }
+                else{
+                   rispostaattacco=0;
+                }
+            }
 
             
 
