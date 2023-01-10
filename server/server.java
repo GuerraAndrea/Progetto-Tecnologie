@@ -29,8 +29,27 @@ public class server{
 
             String[] barcheGiocatore1 = messGiocatore1.split(";");
             String[] barcheGiocatore2 = messGiocatore2.split(";");
+            String lettere = "A;B;C;D;E;F;G;H;I;";
+            String[] l = lettere.split(";");
+            String numeri = "1;2;3;4;5;6;7;8;";
 
             //controllo e sistemo le due tabelle con le barche
+            for(int i;i<10;i++)
+            {
+                if(barcheGiocatore1[0].startsWith(l[i]) && barcheGiocatore1[1].startsWith(l[i]))
+                {
+                    //inserisco i parametri di mezzo
+                }
+            }
+            String barca11 = barcheGiocatore1[0] + barcheGiocatore1[1];
+            String barca12 = barcheGiocatore1[2] + barcheGiocatore1[3];
+            String barca13 = barcheGiocatore1[4] + barcheGiocatore1[5];
+
+            String barca21 = barcheGiocatore2[0] + barcheGiocatore2[1];
+            String barca22 = barcheGiocatore2[2] + barcheGiocatore2[3];
+            String barca23 = barcheGiocatore2[4] + barcheGiocatore2[5];
+
+
 
 
 
@@ -56,6 +75,7 @@ public class server{
                 else{
                    rispostaattacco=0;
                 }
+                //aggiungere controllo affondata
             }
 
             //attacco del giocatore 2
@@ -79,6 +99,7 @@ public class server{
                 else{
                    rispostaattacco=0;
                 }
+                //aggiungere controllo affondata
             }
 
             
