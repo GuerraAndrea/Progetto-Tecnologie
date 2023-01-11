@@ -27,37 +27,53 @@ public class server{
             socketGiocatore2.receive(packetGiocatore2);
             String messGiocatore2=new String(packetGiocatore2.getData());
 
-            String[] barcheGiocatore1 = messGiocatore1.split(";");
-            String[] barcheGiocatore2 = messGiocatore2.split(";");
+
+
+            //-----------------------BARCHE E CONTROLLI---------------------------------//
+
+            String barcheGiocatore1 = messGiocatore1.split(";");
+            String[] barcheG1posizioni = barcheGiocatore1.split(",");
+            String barcheGiocatore2 = messGiocatore2.split(";");
+            String[] barcheG2posizioni = messGiocatore2.split(";");
             String lettere = "A;B;C;D;E;F;G;H;I;";
             String[] l = lettere.split(";");
             String numeri = "1;2;3;4;5;6;7;8;";
 
             //controllo e sistemo le due tabelle con le barche
-            for(int i;i<10;i++)
-            {
-                if(barcheGiocatore1[0].startsWith(l[i]) && barcheGiocatore1[1].startsWith(l[i]))
-                {
-                    //inserisco i parametri di mezzo
+            for(int i;i<10;i++){
+
+                if(barcheG1posizioni[i].startsWith(l[i]) && barcheG1posizioni[i+1].startsWith(l[i])){   //controllo iniziano con la stessa lettera
+                    String num1 = barcheG1posizioni[i].substring(exampleString.length());   //controllo il numero iniziale
+                    String num2 = barcheG1posizioni[i+1].substring(exampleString.length());   //controllo il numero finale
+
+                    int iniz = Integer.parseInt(num1);
+                    int fin = Integer.parseInt(num2);
+
+                    for(int f=Integer.parseInt(s); f<fin; f++){       //inserisco tutti i parametri che sono nel mezzo e aggiungo alla stringa finale
+
+                        String barche1 = barcheG1posizioni[i].substring(0) + f;
+                    }
+                    
+                }
+                else if(barcheG1posizioni[i].startsWith(l[i]) != barcheG1posizioni[i+1].startsWith(l[i])){
+                    String lett1 = barcheG1posizioni[i].substring(0);   //controllo il lettera iniziale
+                    String lett2 = barcheG1posizioni[i+1].substring(0);   //controllo il lettera finale
+
+
+
                 }
             }
-            String barca11 = barcheGiocatore1[0] + barcheGiocatore1[1];
-            String barca12 = barcheGiocatore1[2] + barcheGiocatore1[3];
-            String barca13 = barcheGiocatore1[4] + barcheGiocatore1[5];
-
-            String barca21 = barcheGiocatore2[0] + barcheGiocatore2[1];
-            String barca22 = barcheGiocatore2[2] + barcheGiocatore2[3];
-            String barca23 = barcheGiocatore2[4] + barcheGiocatore2[5];
+            
 
 
 
-
-
-
-            //-------------------------------------------------------------//
+            //-------------------------ATTACCO E CONTROLLI------------------------------------//
             //instauro la connessione e leggo i messaggi degli attacchi 
             //while finchè non ha finito le barche
             //attacco del giocatore 1 per primo
+            while(barcheGiocatore1 != null){
+
+            
             byte[] bufferGiocatore1attacco=new byte[1500];
             DatagramPacket packetGiocatore1attacco=new DatagramPacket(bufferGiocatore1attacco,bufferGiocatore1attacco.length);
             packetGiocatore1.setAddress(InetAddress.getByName(/*IP 1*/));
@@ -71,6 +87,7 @@ public class server{
                 if(barcheGiocatore2[i] == attaccoG1[0])        
                 {
                   rispostaattacco=1;
+                  //se colpita eliminare barca per poi controllare cosa manca
                 }
                 else{
                    rispostaattacco=0;
@@ -101,15 +118,15 @@ public class server{
                 }
                 //aggiungere controllo affondata
             }
+        }
 
             
 
 
 
 
-            // ----------------------------------------------------------------------//
+            // ----------------------------RISPOSTA FINALE------------------------------------------//
             
-                // Risposta finale
                 //indirizzi e porte giocatori
             InetAddress responseAddressGiocatore1=packetGiocatore1.getAddress(); //Giocatore 1
             int responsePortGiocatore1=packetGiocatore1.getPort(); //Giocatore 1
