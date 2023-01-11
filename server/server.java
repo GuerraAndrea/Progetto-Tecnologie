@@ -31,27 +31,31 @@ public class server{
 
             //-----------------------BARCHE E CONTROLLI---------------------------------//
 
-            String barcheGiocatore1 = messGiocatore1.split(";");
+            String barcheGiocatore1 = messGiocatore1.split(";");   //--> A2,A5;...
             String[] barcheG1posizioni = barcheGiocatore1.split(",");
+
             String barcheGiocatore2 = messGiocatore2.split(";");
             String[] barcheG2posizioni = messGiocatore2.split(";");
-            String lettere = "A;B;C;D;E;F;G;H;I;";
-            String[] l = lettere.split(";");
-            String numeri = "1;2;3;4;5;6;7;8;";
+
+            String barche1 = "";  //stringe con tutte le posizioni corrette
+            String barche2 = "";
 
             //controllo e sistemo le due tabelle con le barche
+            //controlli per la prima tabella
             for(int i;i<10;i++){
 
+                //-------------------PRIMA BARCA-------------------//
+                //tutti i controlli sulle barche del primo giocatore
                 if(barcheG1posizioni[i].startsWith(l[i]) && barcheG1posizioni[i+1].startsWith(l[i])){   //controllo iniziano con la stessa lettera
                     String num1 = barcheG1posizioni[i].substring(exampleString.length());   //controllo il numero iniziale
                     String num2 = barcheG1posizioni[i+1].substring(exampleString.length());   //controllo il numero finale
 
-                    int iniz = Integer.parseInt(num1);
-                    int fin = Integer.parseInt(num2);
+                    int iniznum = Integer.parseInt(num1);
+                    int finnum = Integer.parseInt(num2);
 
-                    for(int f=Integer.parseInt(s); f<fin; f++){       //inserisco tutti i parametri che sono nel mezzo e aggiungo alla stringa finale
+                    for(int f=Integer.parseInt(s); f<finnum; f++){       //inserisco tutti i parametri che sono nel mezzo e aggiungo alla stringa finale
 
-                        String barche1 = barcheG1posizioni[i].substring(0) + f;
+                         barche1 += barcheG1posizioni[i].substring(0) + f + ",";  //A2,A5,B4,D4
                     }
                     
                 }
@@ -59,9 +63,49 @@ public class server{
                     String lett1 = barcheG1posizioni[i].substring(0);   //controllo il lettera iniziale
                     String lett2 = barcheG1posizioni[i+1].substring(0);   //controllo il lettera finale
 
+                    int inizLett = charCodeAt(lett1);
+                    int finLett = charCodeAt(lett1);
 
+                    for(int h= charCodeAt(lett1); h<finLett;h++){
+
+                        barche1 += String(h) + barcheG1posizioni[i+1].substring(0) + ",";
+                    }
 
                 }
+
+
+
+
+                //---------------------SECONDA BARCA--------------------------//
+                //tutti i controlli sulle barche del secondo giocatore
+                if(barcheG2posizioni[i].startsWith(l[i]) && barcheG2posizioni[i+1].startsWith(l[i])){   //controllo iniziano con la stessa lettera
+                    String num1 = barcheG2posizioni[i].substring(exampleString.length());   //controllo il numero iniziale
+                    String num2 = barcheG2posizioni[i+1].substring(exampleString.length());   //controllo il numero finale
+
+                    int iniznum = Integer.parseInt(num1);
+                    int finnum = Integer.parseInt(num2);
+
+                    for(int f=Integer.parseInt(s); f<finnum; f++){       //inserisco tutti i parametri che sono nel mezzo e aggiungo alla stringa finale
+
+                         barche1 += barcheG2posizioni[i].substring(0) + f + ",";  //A2,A5,B4,D4
+                    }
+                    
+                }
+                else if(barcheG2posizioni[i].startsWith(l[i]) != barcheG2posizioni[i+1].startsWith(l[i])){
+                    String lett1 = barcheG2posizioni[i].substring(0);   //controllo il lettera iniziale
+                    String lett2 = barcheG2posizioni[i+1].substring(0);   //controllo il lettera finale
+
+                    int inizLett = charCodeAt(lett1);
+                    int finLett = charCodeAt(lett1);
+
+                    for(int h= charCodeAt(lett1); h<finLett;h++){
+
+                        barche1 += String(h) + barcheG2posizioni[i+1].substring(0) + ",";
+                    }
+
+                }
+
+
             }
             
 
@@ -73,29 +117,31 @@ public class server{
             //attacco del giocatore 1 per primo
             while(barcheGiocatore1 != null){
 
-            
+            //da rifare
             byte[] bufferGiocatore1attacco=new byte[1500];
             DatagramPacket packetGiocatore1attacco=new DatagramPacket(bufferGiocatore1attacco,bufferGiocatore1attacco.length);
             packetGiocatore1.setAddress(InetAddress.getByName(/*IP 1*/));
             socketGiocatore1.receive(packetGiocatore1);
             String messGiocatore1attacco=new String(packetGiocatore1.getData());
+            //da rifare
 
-            String[] attaccoG1 = messGiocatore1attacco.split(";");
-            int rispostaattacco=0;  //0=acqua 1=colpito 2=affondato
+            String attaccoG1 = messGiocatore1attacco.split(";");
+            int rispostaattacco1=0;  //0=acqua 1=colpito 2=affondato
             for(Integer i=0; i<50; i++)
             {
-                if(barcheGiocatore2[i] == attaccoG1[0])        
+                if(barche1.contains(attaccoG1))         //se la posizione è contenuta nella stringa delle barche
                 {
-                  rispostaattacco=1;
+                  rispostaattacco1=1;
                   //se colpita eliminare barca per poi controllare cosa manca
                 }
                 else{
-                   rispostaattacco=0;
+                   rispostaattacco1=0;
                 }
                 //aggiungere controllo affondata
             }
 
             //attacco del giocatore 2
+            //RIFARE
             byte[] bufferGiocatore2attacco=new byte[1500];
             DatagramPacket packetGiocatore2attacco=new DatagramPacket(bufferGiocatore2attacco,bufferGiocatore2attacco.length); 
             packetGiocatore2.setAddress(InetAddress.getByName(/* IP 2*/));
@@ -104,17 +150,18 @@ public class server{
 
             //metto i messaggi in due variabili per il controllo
             
-            String[] attaccoG2 = messGiocatore2attacco.split(";");
+            String attaccoG2 = messGiocatore2attacco.split(";");
+            int rispostaattacco2=0;
             
 
             for(Integer i=0; i<50; i++)
             {
-                if(barcheGiocatore1[i] == attaccoG2[0])        
+                if(barche2.contains(attaccoG2))        
                 {
-                  rispostaattacco=1;
+                  rispostaattacco2=1;
                 }
                 else{
-                   rispostaattacco=0;
+                   rispostaattacco2=0;
                 }
                 //aggiungere controllo affondata
             }
