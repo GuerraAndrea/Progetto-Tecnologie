@@ -6,26 +6,34 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 
 public class server {
-    public static void main(String[] args) {
+    public static final int PORT = 8080;
+
+    public static void main(String[] args) throws IOException {
+
         try {
 
-            DatagramSocket socketGiocatore1 = new DatagramSocket(/* porta 1 */);
-            // apro la socket con il primo giocatore
+            // ----------------CONNESSIONI CON I CLIENT E LETTURA MESSAGGI----------------//
+            ServerSocket s1 = new ServerSocket(PORT);
+            System.out.println("Started: " + s1);
+            try {
+                Socket socket1 = s1.accept();
+                System.out.println("Connection accepted: " + socket1);
+                BufferedReader messGiocatore1 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } finally {
+                System.out.println("closing...");
+                socket1.close();
+            }
 
-            byte[] bufferGiocatore1 = new byte[1500];
-            DatagramPacket packetGiocatore1 = new DatagramPacket(bufferGiocatore1, bufferGiocatore1.length);
-            packetGiocatore1.setAddress(InetAddress.getByName(/* IP 1 */));
-            socketGiocatore1.receive(packetGiocatore1);
-            String messGiocatore1 = new String(packetGiocatore1.getData());
-
-            DatagramSocket socketGiocatore2 = new DatagramSocket(/* porta 2 */);
-            // apero la secket con il secondo giocatore
-
-            byte[] bufferGiocatore2 = new byte[1500];
-            DatagramPacket packetGiocatore2 = new DatagramPacket(bufferGiocatore2, bufferGiocatore2.length);
-            packetGiocatore2.setAddress(InetAddress.getByName(/* IP 2 */));
-            socketGiocatore2.receive(packetGiocatore2);
-            String messGiocatore2 = new String(packetGiocatore2.getData());
+            ServerSocket s2 = new ServerSocket(PORT);
+            System.out.println("Started: " + s2);
+            try {
+                Socket socket2 = s2.accept();
+                System.out.println("Connection accepted: " + socket2);
+                BufferedReader messGiocatore2 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } finally {
+                System.out.println("closing...");
+                socket2.close();
+            }
 
             // -----------------------BARCHE E CONTROLLI---------------------------------//
 
@@ -139,8 +147,12 @@ public class server {
                         barche1 = barche1.replaceAll(attaccoG1, "");
                         rispostaattacco1 = 1;
                         // mandare la risposta al client
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
                     } else {
                         rispostaattacco1 = 0;
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
                     }
                     // aggiungere controllo affondata
                 }
@@ -165,8 +177,45 @@ public class server {
                         barche2 = barche2.replaceAll(attaccoG2, "");
                         rispostaattacco2 = 1;
                         // mandare la risposta al client
+
+                        ServerSocket satt1 = new ServerSocket(PORT);
+                        System.out.println("Started: " + satt1);
+                        try {
+                            Socket socketatt1 = satt1.accept();
+                            try {
+                                System.out.println("Connection accepted: " + socketatt1);
+                                PrintWriter out = new PrintWriter(
+                                        new BufferedWriter(
+                                                new OutputStreamWriter(socketatt1.getOutputStream(rispostaattacco1))));
+                            } finally {
+                                System.out.println("closing...");
+                                socketatt1.close();
+                            }
+                        } finally {
+                            satt1.close();
+                        }
+
+                        // altrimenti
                     } else {
                         rispostaattacco2 = 0;
+                        // mandare risposta al client
+                        ServerSocket satt2 = new ServerSocket(PORT);
+                        System.out.println("Started: " + satt2);
+                        try {
+                            Socket socketatt2 = satt2.accept();
+                            try {
+                                System.out.println("Connection accepted: " + socketatt2);
+                                PrintWriter out = new PrintWriter(
+                                        new BufferedWriter(
+                                                new OutputStreamWriter(socketatt2.getOutputStream(rispostaattacco2))));
+                            } finally {
+                                System.out.println("closing...");
+                                socketatt1.close();
+                            }
+                        } finally {
+                            satt2.close();
+                        }
+
                     }
                     // aggiungere controllo affondata
                 }
@@ -175,32 +224,48 @@ public class server {
             // -------------------FINALE E RISULTATI-----------------------//
 
             // indirizzi e porte giocatori
-            InetAddress responseAddressGiocatore1 = packetGiocatore1.getAddress(); // Giocatore 1
-            int responsePortGiocatore1 = packetGiocatore1.getPort(); // Giocatore 1
-            InetAddress responseAddressGiocatore2 = packetGiocatore2.getAddress(); // Giocatore 2
-            int responsePortGiocatore2 = packetGiocatore2.getPort(); // Giocatore 2
 
             if (barche1 == null) {
                 // invio risposta al gicoatore 1
-                bufferGiocatore1 = rispostaGiocatore1.getBytes();
 
-                packetGiocatore1 = new DatagramPacket(bufferGiocatore1, bufferGiocatore1.length);
-                packetGiocatore1.setAddress(responseAddressGiocatore1);
-                packetGiocatore1.setPort(responsePortGiocatore1);
-                socketGiocatore1.send(packetGiocatore1); // invio della risposta
-                socketGiocatore1.close(); // chiusura socket
+                ServerSocket sv = new ServerSocket(PORT);
+                System.out.println("Started: " + sv);
+                try {
+                    Socket socketv = sv.accept();
+                    try {
+                        System.out.println("Connection accepted: " + socketv);
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(socketv.getOutputStream("Hai vinto"))));
+                    } finally {
+                        System.out.println("closing...");
+                        socketv.close();
+                    }
+                } finally {
+                    sv.close();
+                }
+
             } else {
-                // invio risposta al giocatore 2
-                bufferGiocatore2 = rispostaGiocatore2.getBytes();
 
-                packetGiocatore2 = new DatagramPacket(bufferGiocatore2, bufferGiocatore2.length);
-                packetGiocatore2.setAddress(responseAddressGiocatore2);
-                packetGiocatore2.setPort(responsePortGiocatore2);
-                socketGiocatore2.send(packetGiocatore2); // invio della risposta
-                socketGiocatore2.close(); // chiusura socket
+                ServerSocket ss = new ServerSocket(PORT);
+                System.out.println("Started: " + ss);
+                try {
+                    Socket sockets = ss.accept();
+                    try {
+                        System.out.println("Connection accepted: " + socket3);
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(sockets.getOutputStream("Hai vinto"))));
+                    } finally {
+                        System.out.println("closing...");
+                        sockets.close();
+                    }
+                } finally {
+                    ss.close();
+                }
             }
 
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             e.printStackTrace();
         }
     }
