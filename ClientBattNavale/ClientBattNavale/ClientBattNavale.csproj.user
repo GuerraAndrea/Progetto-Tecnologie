@@ -7,21 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Attacco.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Tabella1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Attacco.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Tabella1.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

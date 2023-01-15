@@ -16,7 +16,8 @@ namespace ClientBattNavale.Logica
         public Mappa mappa;
         private DatiCondivisi()
         {
-            TcpClient c = new TcpClient("192.168.1.2", 12345);
+            
+            TcpClient c = new TcpClient("192.168.52.1", 8080);
             avversario = new GestioneConnessione(c);
             mappa = new Mappa();
         }

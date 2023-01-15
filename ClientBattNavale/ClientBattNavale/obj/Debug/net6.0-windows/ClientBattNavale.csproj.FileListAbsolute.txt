@@ -27,15 +27,11 @@ C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\Cl
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\bin\Debug\net6.0-windows\ClientBattNavale.dll
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\bin\Debug\net6.0-windows\ClientBattNavale.pdb
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale.csproj.AssemblyReference.cache
-C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\Attacco.g.cs
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\Tabella1.g.cs
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale_MarkupCompile.cache
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale_MarkupCompile.lref
-C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\Attacco.baml
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\MainWindow.baml
-C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\Tabella1.baml
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale.g.resources
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\anton\OneDrive\Documenti\GitHub\Progetto-Tecnologie\ClientBattNavale\ClientBattNavale\obj\Debug\net6.0-windows\ClientBattNavale.AssemblyInfoInputs.cache
