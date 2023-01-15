@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientBattNavale.Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,48 +21,156 @@ namespace ClientBattNavale
     /// </summary>
     public partial class MainWindow : Window
     {
-        DatiCondivisi condi;
-        Client c;
-        public int valueImage { get; set; }
-        public Uri sourceOfTheImage { get; set; }
-        Random rand = new Random();
-        public MainWindow(DatiCondivisi condi,Client c)
+        public Button[,] buttons = new Button[10, 10], attacchi = new Button[10, 10];
+        static int[] navi = { 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 };
+        int naviInserite;
+        public MainWindow()
         {
-            sourceOfTheImage = new Uri(".jpg", UriKind.Relative);
             InitializeComponent();
-            valueImage = 1;
-            this.condi = condi;
-            this.c = c;
+            DatiCondivisi.Init().main = this;
         }
-        public void closing()
+        public void InitPosizioneNavi()
         {
-            Dispatcher.Invoke(() =>
+
+            naviInserite = 0;
+            TipoNave.Content = "Inserire una nave di " + navi[naviInserite] + " celle";
+            for (int i = 0; i < 10; i++)
             {
-                if (txtNome.Text != "" && txtNome.Text != null)
+                for (int j = 0; j < 10; j++)
                 {
-                    condi.Utente = txtNome.Text;
-                    condi.sourceOfTheImage = sourceOfTheImage;
-                    this.Close();
+                    Button b = new Button();
+                    b.Width = InitGrigliaNavi.Width / 10;
+                    b.Height = InitGrigliaNavi.Height / 10;
+                    b.Margin = new Thickness(j * InitGrigliaNavi.Width / 10, i * InitGrigliaNavi.Height / 10, (9 - j) * InitGrigliaNavi.Width / 10, (9 - i) * InitGrigliaNavi.Width / 10);
+                    b.Click += B_Click;
+                    b.Name = "B" + (i + 1) + "_" + j;
+                    buttons[i, j] = b;
+                    InitGrigliaNavi.Children.Add(b);
+                }
+            }
+        }
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            string[] numero = ((Button)e.Source).Name.Substring(1).Split('_');
+            if (txtLettera.Text == "")
+            {
+                txtLettera.Text = (char)(int.Parse(numero[1]) + 'A') + "";
+                txtNumero.Text = int.Parse(numero[0]) + "";
+            }
+            else
+            {
+                txtLetteraTermine.Text = (char)(int.Parse(numero[1]) + 'A') + "";
+                txtNumeroTermine.Text = int.Parse(numero[0]) + "";
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtLettera.Text != "" && txtLetteraTermine.Text != "")
+            {
+                if (DatiCondivisi.Init().mappa.aggiungiNave(new Coordinate(txtLettera.Text[0], int.Parse(txtNumero.Text)), new Coordinate(txtLetteraTermine.Text[0], int.Parse(txtNumeroTermine.Text)), navi[naviInserite]))
+                {
+                    naviInserite++;
+                    if (naviInserite < navi.Length)
+                        TipoNave.Content = "Inserire una nave di " + navi[naviInserite] + " celle";
+                    else
+                        MostraGioco();
+                    txtLettera.Text = "";
+                    txtLetteraTermine.Text = "";
+                    txtNumero.Text = "";
+                    txtNumeroTermine.Text = "";
+                    AggiornaMappa();
                 }
                 else
-                {
-                    MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
-                    condi.aCaso = false;
-                }
-            });
-
-        }
-
-        private void btnPartita_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtNome.Text == "" && txtNome.Text != null)
-            {
-                MessageBox.Show("Invalid username", "BATTAGLIA NAVALE");
+                    MessageBox.Show("Errore");
             }
-
-           
-
-            
         }
+        public void MostraInitGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Visible;
+                GridGioco.Visibility = Visibility.Hidden;
+                GridConnessione.Visibility = Visibility.Hidden;
+                InitPosizioneNavi();
+            });
+        }
+        public void MostraConnessione()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Hidden;
+                GridGioco.Visibility = Visibility.Hidden;
+                GridConnessione.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void MostraGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                InitGioco.Visibility = Visibility.Hidden;
+                GridGioco.Visibility = Visibility.Visible;
+                GridConnessione.Visibility = Visibility.Hidden;
+                MostraMappaGioco();
+            });
+        }
+        public void AggiornaMappa()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                        if (DatiCondivisi.Init().mappa.mappa[i, j] < 0)
+                            buttons[i, j].Background = Brushes.Red;
+                        else if (DatiCondivisi.Init().mappa.mappa[i, j] > 0)
+                            buttons[i, j].Background = Brushes.Black;
+            });
+        }
+        public void AggiornaAttacchi()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                        if (DatiCondivisi.Init().mappa.attacchi[i, j] < 0)
+                            attacchi[i, j].Background = Brushes.Red;
+                        else if (DatiCondivisi.Init().mappa.attacchi[i, j] > 0)
+                            attacchi[i, j].Background = Brushes.Black;
+            });
+        }
+        public void MostraMappaGioco()
+        {
+            Dispatcher.Invoke(delegate
+            {
+                for (int i = 0; i < 10; i++)
+                    for (int j = 0; j < 10; j++)
+                    {
+                        InitGrigliaNavi.Children.Remove(buttons[i, j]);
+                        MiaMappa.Children.Add(buttons[i, j]);
+                        Button b = new Button();
+                        b.Width = InitGrigliaNavi.Width / 10;
+                        b.Height = InitGrigliaNavi.Height / 10;
+                        b.Margin = new Thickness(j * InitGrigliaNavi.Width / 10, i * InitGrigliaNavi.Height / 10, (9 - j) * InitGrigliaNavi.Width / 10, (9 - i) * InitGrigliaNavi.Width / 10);
+                        b.Click += BAttacchi_Click;
+                        b.Name = "B" + (i + 1) + "_" + j;
+                        attacchi[i, j] = b;
+                        MappaAttacchi.Children.Add(b);
+                    }
+            });
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            txtLettera.Text = "";
+            txtNumero.Text = "";
+        }
+
+        private void BAttacchi_Click(object sender, RoutedEventArgs e)
+        {
+            string[] split = ((Button)e.Source).Name.Substring(1).Split('_');
+            DatiCondivisi.Init().mappa.AttaccaNave(new Coordinate((char)(int.Parse(split[1]) + 'A'), int.Parse(split[0])));
+            AggiornaMappa();
+            AggiornaAttacchi();
+        }
+
     }
 }

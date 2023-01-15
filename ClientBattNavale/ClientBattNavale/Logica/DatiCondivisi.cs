@@ -12,7 +12,7 @@ namespace ClientBattNavale.Logica
     {
         public static DatiCondivisi instance = null;
         public GestioneConnessione avversario;
-        public Client main;
+        public MainWindow main;
         public Mappa mappa;
         private DatiCondivisi()
         {
