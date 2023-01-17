@@ -17,7 +17,7 @@ namespace ClientBattNavale.Comunicazione
         }
         public Messaggio(string csv)
         {
-            int separatore = csv.IndexOf(';');
+            int separatore = csv.IndexOf(',');
             this.scelta = csv.Substring(0, separatore);
             this.dati = csv.Substring(separatore + 1, csv.Length - separatore - 1);
         }
