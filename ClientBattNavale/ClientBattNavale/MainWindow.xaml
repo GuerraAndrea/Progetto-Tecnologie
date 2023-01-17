@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="GridConnessione" Visibility="Hidden">
+        <Grid x:Name="GridConnessione" Visibility="Visible">
             <Label Content="IP:" HorizontalAlignment="Left" Margin="234,200,0,0" VerticalAlignment="Top"/>
             <TextBox HorizontalAlignment="Left" Height="23" x:Name="TxtIp" Margin="339,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             <Button Content="Connetti" HorizontalAlignment="Left" Margin="339,262,0,0" VerticalAlignment="Top" Width="75"/>
@@ -31,7 +31,7 @@
             <Label Content="clicca sui bottoni per inserire le coordinate, poi clicca conferma" HorizontalAlignment="Left" Margin="461,83,0,0" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid x:Name="GridGioco" Visibility="Visible">
+        <Grid x:Name="GridGioco" Visibility="Hidden">
             <Grid x:Name="MiaMappa" Width="300" Height="300" Margin="76,112,525.6,105.6"></Grid>
             <Grid x:Name="MappaAttacchi" Width="300" Height="300" Margin="497,112,104.6,105.6"/>
             <Label Content="Tue navi" HorizontalAlignment="Left" Margin="153,81,0,0" VerticalAlignment="Top"/>
