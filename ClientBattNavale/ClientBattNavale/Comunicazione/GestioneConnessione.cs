@@ -75,8 +75,8 @@ namespace ClientBattNavale.Comunicazione
                             break;
                     }
                     DatiCondivisi.Init().main.AggiornaAttacchi();
-                    Coordinate c = new Coordinate(split[1][0], int.Parse(split[0]));
-                    DatiCondivisi.Init().mappa.SubisciAttaccoNave(c);
+                    Coordinate c = new Coordinate(split[2][0], int.Parse(split[1]));
+                    DatiCondivisi.Init().mappa.AttaccaNave(c);
                     break;
                 case "t":
                     DatiCondivisi.Init().mappa.turno = !DatiCondivisi.Init().mappa.turno;
