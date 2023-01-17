@@ -1,4 +1,5 @@
-﻿using ClientBattNavale.Logica;
+﻿using ClientBattNavale.Comunicazione;
+using ClientBattNavale.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -162,6 +163,12 @@ namespace ClientBattNavale
         {
             txtLettera.Text = "";
             txtNumero.Text = "";
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DatiCondivisi.Init().avversario.Invia(new Messaggio("c", TxtIp.Text));
+            MostraInitGioco();
         }
 
         private void BAttacchi_Click(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@
         <Grid x:Name="GridConnessione" Visibility="Visible">
             <Label Content="IP:" HorizontalAlignment="Left" Margin="234,200,0,0" VerticalAlignment="Top"/>
             <TextBox HorizontalAlignment="Left" Height="23" x:Name="TxtIp" Margin="339,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Connetti" HorizontalAlignment="Left" Margin="339,262,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Connetti" HorizontalAlignment="Left" Margin="339,262,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
         </Grid>
         <Grid x:Name="InitGioco" Visibility="Hidden">
             <Label Content="PosizionaNavi" HorizontalAlignment="Left" Margin="91,52,0,0" VerticalAlignment="Top" Width="118"/>

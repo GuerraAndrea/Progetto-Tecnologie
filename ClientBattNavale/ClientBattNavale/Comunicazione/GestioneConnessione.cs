@@ -1,4 +1,5 @@
-﻿using ClientBattNavale.Logica;
+﻿
+using ClientBattNavale.Logica;
 using System;
 using System.Collections.Generic;
 using System.IO;
