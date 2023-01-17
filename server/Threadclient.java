@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +19,6 @@ public class Threadclient extends Thread {
         condivisa inst = condivisa.getInstance();
         String messaggio = "";
         boolean loop = true;
-        int count = 0;
         while (loop) {
             try {
                 messaggio = in.readLine();
