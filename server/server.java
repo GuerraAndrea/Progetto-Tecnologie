@@ -13,7 +13,9 @@ public class server {
         try {
 
             // ----------------CONNESSIONI CON I CLIENT E LETTURA MESSAGGI----------------//
-            ServerSocket s1 = new ServerSocket(PORT);
+
+            ServerThread server = new ServerThread();
+            server.Connessione();
             System.out.println("Started: " + s1);
             try {
                 Socket socket1 = s1.accept();
