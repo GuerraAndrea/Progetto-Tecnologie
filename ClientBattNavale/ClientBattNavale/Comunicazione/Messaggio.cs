@@ -23,7 +23,7 @@ namespace ClientBattNavale.Comunicazione
         }
         public string toCsv()
         {
-            return scelta + ";" + dati;
+            return scelta + "," + dati;
         }
     }
 }

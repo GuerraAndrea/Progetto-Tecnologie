@@ -39,7 +39,7 @@ namespace ClientBattNavale.Logica
                 for (int i = Math.Min(inizio.Riga, fine.Riga) - 1; i < Math.Max(inizio.Riga, fine.Riga); i++)
                     mappa[i, inizio.getNumeroColonna()] = 1;
             }
-            DatiCondivisi.Init().avversario.Invia(new Messaggio("P", inizio.toCSV() + ";" + fine.toCSV()));
+            DatiCondivisi.Init().avversario.Invia(new Messaggio("P", inizio.toCSV() + "," + fine.toCSV()));
             return true;
         }
         public void SubisciAttaccoNave(Coordinate attacco)

@@ -12,7 +12,7 @@ namespace ClientBattNavale.Logica
         public int Riga;
         public Coordinate(string csv)
         {
-            string[] split = csv.Split(';');
+            string[] split = csv.Split(',');
             Colonna = split[0][0];
             Riga = int.Parse(split[1]);
         }
@@ -27,7 +27,7 @@ namespace ClientBattNavale.Logica
         }
         public string toCSV()
         {
-            return Riga + ";" + Colonna;
+            return Riga + "," + Colonna;
         }
     }
 }
