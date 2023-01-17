@@ -23,7 +23,7 @@ public class Threadclient extends Thread {
             try {
                 messaggio = in.readLine();
                 if (messaggio != null) {
-                    System.out.println(_socket.id + " ha ricevuto : " + messaggio);
+                    System.out.println(_socket.id + ": " + messaggio);
                     if (messaggio.equals("END")) {
                         _socket.close();
                         loop = false;
@@ -102,13 +102,14 @@ public class Threadclient extends Thread {
                 || condivisa.getInstance().sockets.get(2).barche != null) {
 
             String attacco1 = "";
+            String messaggio2 = "";
             boolean loop2 = true;
             while (loop2) {
                 try {
-                    messaggio = in.readLine();
-                    if (messaggio != null) {
-                        System.out.println(_socket.id + " ha ricevuto : " + attacco1);
-                        if (messaggio.equals("END")) {
+                    messaggio2 = in.readLine();
+                    if (messaggio2 != null) {
+                        System.out.println(_socket.id + ": " + attacco1);
+                        if (messaggio2.equals("END")) {
                             _socket.close();
                             loop2 = false;
                             break;
@@ -146,13 +147,14 @@ public class Threadclient extends Thread {
 
             // secondo giocatore
             String attacco2 = "";
+            String messaggio3 = "";
             boolean loop3 = true;
             while (loop3) {
                 try {
-                    messaggio = in.readLine();
-                    if (messaggio != null) {
-                        System.out.println(_socket.id + " ha ricevuto : " + attacco2);
-                        if (messaggio.equals("END")) {
+                    messaggio3 = in.readLine();
+                    if (messaggio3 != null) {
+                        System.out.println(_socket.id + ": " + attacco2);
+                        if (messaggio3.equals("END")) {
                             _socket.close();
                             loop3 = false;
                             break;
