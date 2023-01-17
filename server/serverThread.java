@@ -28,6 +28,7 @@ public class serverThread extends Thread {
             } catch (SocketTimeoutException ex) {
                 serversocket.close();
                 connected = false;
+                
             }
         }
     }
