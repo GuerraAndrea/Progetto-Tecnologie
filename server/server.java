@@ -67,7 +67,7 @@ public class server {
                     int iniznum = Integer.parseInt(num1);
                     int finnum = Integer.parseInt(num2);
 
-                    for (int f = Integer.parseInt(s); f < finnum; f++) { // inserisco tutti i parametri che sono nel
+                    for (int f = Integer.parseInt(iniznum); f < finnum; f++) { // inserisco tutti i parametri che sono nel
                                                                          // mezzo e aggiungo alla stringa finale
 
                         barche1 += barcheG1posizioni[i].substring(0) + f + ","; // A2,A5,B4,D4

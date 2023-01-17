@@ -62,15 +62,15 @@ public class Threadclient extends Thread{
                                                                                                           // con la
                                                                                                           // stessa
                                                                                                           // lettera
-                    String num1 = TutteLePosizini.get(i).substring(exampleString.length()); // controllo il numero
+                    String num1 = TutteLePosizini.get(i).substring(TutteLePosizini.get(i).length()); // controllo il numero
                                                                                           // iniziale
-                    String num2 = TutteLePosizini.get(i+1).substring(exampleString.length()); // controllo il numero
+                    String num2 = TutteLePosizini.get(i+1).substring(TutteLePosizini.get(i+1).length()); // controllo il numero
                                                                                               // finale
 
                     int iniznum = Integer.parseInt(num1);
                     int finnum = Integer.parseInt(num2);
 
-                    for (int f = Integer.parseInt(s); f < finnum; f++) { // inserisco tutti i parametri che sono nel
+                    for (int f = iniznum; f < finnum; f++) { // inserisco tutti i parametri che sono nel
                                                                          // mezzo e aggiungo alla stringa finale
 
                         barche1 += TutteLePosizini.get(i).substring(0) + f + ","; // A2,A5,B4,D4
@@ -80,23 +80,59 @@ public class Threadclient extends Thread{
                     String lett1 = TutteLePosizini.get(i).substring(0); // controllo il lettera iniziale
                     String lett2 = TutteLePosizini.get(i+1).substring(0); // controllo il lettera finale
 
-                    int inizLett = charCodeAt(lett1);
-                    int finLett = charCodeAt(lett1);
+                    int inizlett = Integer.parseInt(lett1);
+                    int finLett = Integer.parseInt(lett2);
 
-                    for (int h = charCodeAt(lett1); h < finLett; h++) {
+                    for (int h = inizlett; h < finLett; h++) {
 
-                        barche1 += String(h) + barcheG1posizioni[i + 1].substring(0) + ",";
+                        barche1 += Integer.toString(h) + TutteLePosizini.get(i + 1).substring(0) + ",";
+                        _socket.barche=barche1;
                     }
 
+                }      
+
+            }
+
+            //------------------------ATTACCHI--------------------//
+            while (barcheGiocatore1 != null) {
+
+                // da rifare
+                byte[] bufferGiocatore1attacco = new byte[1500];
+                DatagramPacket packetGiocatore1attacco = new DatagramPacket(bufferGiocatore1attacco,
+                        bufferGiocatore1attacco.length);
+                packetGiocatore1.setAddress(InetAddress.getByName(/* IP 1 */));
+                socketGiocatore1.receive(packetGiocatore1);
+                String messGiocatore1attacco = new String(packetGiocatore1.getData());
+                // da rifare
+
+                String attaccoG1 = messGiocatore1attacco.split(";");
+                attaccoG1 = attaccoG1 + ",";
+                int rispostaattacco1 = 0; // 0=acqua 1=colpito 2=affondato
+                for (Integer i = 0; i < 50; i++) {
+                    if (barche1.contains(attaccoG1)) // se la posizione è contenuta nella stringa delle barche
+                    {
+                        barche1 = barche1.replaceAll(attaccoG1, "");
+                        rispostaattacco1 = 1;
+                        // mandare la risposta al client
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
+                    } else {
+                        rispostaattacco1 = 0;
+                        PrintWriter out = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
+                    }
+                    // aggiungere controllo affondata
                 }
 
-                    
 
-                    
-                    if(count==2){
+
+
+
+            //----------------------FINALE-----------------------//
                              String barca1;
                              String barca2;
-                            barca1=condivisa.getInstance().sockets.get(1).barche;
+                             barca1=condivisa.getInstance().sockets.get(1).barche;
+                             barca2=condivisa.getInstance().sockets.get(1).barche;
 
                             if(barca1==null){
                                 condivisa.getInstance().sockets.get(1).out.println("hai vinto");
