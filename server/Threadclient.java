@@ -4,10 +4,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Threadclient extends Thread{
-    mySocket _socket=null;
+public class Threadclient extends Thread {
+    mySocket _socket = null;
     BufferedReader in;
-    
+
     public Threadclient(mySocket socket) throws IOException
     {
         _socket=socket;
@@ -94,32 +94,65 @@ public class Threadclient extends Thread{
             }
 
             //------------------------ATTACCHI--------------------//
-            while (barcheGiocatore1 != null) {
+            while (condivisa.getInstance().sockets.get(1).barche != null || condivisa.getInstance().sockets.get(2).barche != null) {
 
-                // da rifare
-                byte[] bufferGiocatore1attacco = new byte[1500];
-                DatagramPacket packetGiocatore1attacco = new DatagramPacket(bufferGiocatore1attacco,
-                        bufferGiocatore1attacco.length);
-                packetGiocatore1.setAddress(InetAddress.getByName(/* IP 1 */));
-                socketGiocatore1.receive(packetGiocatore1);
-                String messGiocatore1attacco = new String(packetGiocatore1.getData());
-                // da rifare
+            String attacco1="";
+            boolean loop2=true;
+            while (loop2) {
+            try {
+                messaggio = in.readLine();
+                if(messaggio != null){ 
+                    System.out.println(_socket.id+" ha ricevuto : " + attacco1);
+                    if (messaggio.equals("END")){ 
+                        _socket.close();
+                        loop2=false;
+                        break;
+                    }
 
-                String attaccoG1 = messGiocatore1attacco.split(";");
-                attaccoG1 = attaccoG1 + ",";
+                String[] attaccoGiocatore = attacco1.split(";");
+                attaccoGiocatore[0] = attaccoGiocatore[0] + ",";
                 int rispostaattacco1 = 0; // 0=acqua 1=colpito 2=affondato
                 for (Integer i = 0; i < 50; i++) {
-                    if (barche1.contains(attaccoG1)) // se la posizione è contenuta nella stringa delle barche
+                    if (condivisa.getInstance().sockets.get(1).barche.contains(attaccoGiocatore[0])) // se la posizione è contenuta nella stringa delle barche
                     {
-                        barche1 = barche1.replaceAll(attaccoG1, "");
+                        condivisa.getInstance().sockets.get(1).barche = condivisa.getInstance().sockets.get(1).barche.replaceAll(attaccoGiocatore[0], "");
                         rispostaattacco1 = 1;
                         // mandare la risposta al client
-                        PrintWriter out = new PrintWriter(
-                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
+                        condivisa.getInstance().sockets.get(1).out.println(1);
                     } else {
                         rispostaattacco1 = 0;
-                        PrintWriter out = new PrintWriter(
-                                new BufferedWriter(new OutputStreamWriter(ocket.getOutputStream(rispostaattacco1))));
+                        condivisa.getInstance().sockets.get(1).out.println(0);
+                    }
+                    // aggiungere controllo affondata
+                }
+
+               //secondo giocatore
+            String attacco2="";
+            boolean loop3=true;
+            while (loop3) {
+            try {
+                messaggio = in.readLine();
+                if(messaggio != null){ 
+                    System.out.println(_socket.id+" ha ricevuto : " + attacco2);
+                    if (messaggio.equals("END")){ 
+                        _socket.close();
+                        loop3=false;
+                        break;
+                    }
+
+                String[] attaccoGiocatore2 = attacco1.split(";");
+                attaccoGiocatore2[0] = attaccoGiocatore[0] + ",";
+                int rispostaattacco2 = 0; // 0=acqua 1=colpito 2=affondato
+                for (Integer i = 0; i < 50; i++) {
+                    if (condivisa.getInstance().sockets.get(2).barche.contains(attaccoGiocatore2[0])) // se la posizione è contenuta nella stringa delle barche
+                    {
+                        condivisa.getInstance().sockets.get(2).barche = condivisa.getInstance().sockets.get(2).barche.replaceAll(attaccoGiocatore2[0], "");
+                        rispostaattacco2 = 1;
+                        // mandare la risposta al client
+                        condivisa.getInstance().sockets.get(2).out.println(1);
+                    } else {
+                        rispostaattacco2 = 0;
+                        condivisa.getInstance().sockets.get(2).out.println(0);
                     }
                     // aggiungere controllo affondata
                 }
@@ -132,7 +165,7 @@ public class Threadclient extends Thread{
                              String barca1;
                              String barca2;
                              barca1=condivisa.getInstance().sockets.get(1).barche;
-                             barca2=condivisa.getInstance().sockets.get(1).barche;
+                             barca2=condivisa.getInstance().sockets.get(2).barche;
 
                             if(barca1==null){
                                 condivisa.getInstance().sockets.get(1).out.println("hai vinto");
@@ -143,14 +176,19 @@ public class Threadclient extends Thread{
                                 condivisa.getInstance().sockets.get(2).out.println();
                             }
                     }
-                }
+                
             } catch (IOException e) {
                //connessione chiusa
                break;   //e vado a rimuovere la socket
-            }
+            }finally{
+            inst.removeSocket(_socket);
         }
 
-        inst.removeSocket(_socket);            
+                    
 
     }
 }
+
+            
+            
+        
